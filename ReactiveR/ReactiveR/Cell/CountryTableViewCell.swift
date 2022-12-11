@@ -14,7 +14,8 @@ class CountryTableViewCell: UITableViewCell {
     @IBOutlet weak var descrLabel: UILabel!
     
     func setupView(with model: University) {
-        stringView.layer.cornerRadius = 5
+        stringView.clipsToBounds = true
+        stringView.layer.cornerRadius = 7
         descrLabel.text = model.description
     }
 }

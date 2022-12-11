@@ -19,28 +19,32 @@ class ViewController: UIViewController {
     
     let nib = UINib(nibName: "CountryTableViewCell", bundle: nil)
     
-    var countries = BehaviorRelay<[University]>(value: [])
+    let countries = ["Poland", "Canada", "Ukraine", "Belarus", "Latvia"]
+    
+    var rxUniversities = BehaviorRelay<[University]>(value: [])
+    var universities: [University]? {
+        didSet { tableView.reloadData() }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        tableView.delegate = self
 //        tableView.dataSource = self
         tableView.register(nib, forCellReuseIdentifier: "univerCell")
-        tableView.backgroundColor = .systemGray4
+//        loadData()
         setupBinding()
     }
-
-    func setupBinding() {
-        apiClient.countries()
+    
+    //rxswift
+    private func setupBinding() {
+        apiClient.countries(with: countries)
             .subscribe(onNext: { [weak self] univers in
-                let sorted = univers.sorted(by: { $0.name < $1.name })
-                self?.countries.accept(sorted)
+                self?.rxUniversities.accept(univers)
             })
             .disposed(by: disposeBag)
-        
-        countries
+
+        rxUniversities
             .bind(to: tableView.rx.items(cellIdentifier: "univerCell", cellType: CountryTableViewCell.self)) { index, model, cell in
-                cell.backgroundColor = .systemGray4
                 cell.setupView(with: model)
             }
             .disposed(by: disposeBag)
@@ -53,50 +57,43 @@ class ViewController: UIViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    //async await
+    private func loadData() {
+        Task {
+            let startTime = CFAbsoluteTimeGetCurrent()
+            
+            universities = try await apiClient.getCountries(with: countries)
+            
+            let endTime = CFAbsoluteTimeGetCurrent()
+            print(String(format: "%.5f", endTime - startTime))
+        }
+    }
 }
 
 //extension ViewController: UITableViewDelegate, UITableViewDataSource {
 //
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 5
-//    }
-//
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        switch section {
-//        case 0:
-//            return poland.count
-//        case 1:
-//            return ukraine.count
-//        case 2:
-//            return belarus.count
-//        case 3:
-//            return usa.count
-//        case 4:
-//            return latvia.count
-//        default:
-//            return 0
-//        }
+//        return universities?.count ?? 0
 //    }
 //
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CountryTableViewCell", for: indexPath) as? CountryTableViewCell else { return UITableViewCell() }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "univerCell", for: indexPath) as? CountryTableViewCell,
+//              let universities else { return UITableViewCell() }
 //
-//        switch indexPath.section {
-//        case 0:
-//            cell.setupView(with: poland[indexPath.row])
-//        case 1:
-//            cell.setupView(with: ukraine[indexPath.row])
-//        case 2:
-//            cell.setupView(with: belarus[indexPath.row])
-//        case 3:
-//            cell.setupView(with: usa[indexPath.row])
-//        case 4:
-//            cell.setupView(with: latvia[indexPath.row])
-//        default:
-//            break
-//        }
+//        cell.stringView.clipsToBounds = true
+//        cell.stringView.layer.cornerRadius = 7
+//        cell.setupView(with: universities[indexPath.row])
 //
 //        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let universities else { return }
+//
+//        let url = URL(string: universities[indexPath.row].web_pages[0])!
+//        let vc = SFSafariViewController(url: url)
+//        present(vc, animated: true)
 //    }
 //
 //}
