@@ -5,9 +5,11 @@ The main aim of this project was to implement asynchronous requests with RxSwift
 Also in process it was very curious to compare it to native-based solution with help of Async/Await.
 
 The requests works fine and smooth:
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-22 at 14 41 04](https://user-images.githubusercontent.com/69910183/209126911-93bf9c7d-7085-48c2-a955-35717f90b0e2.png)
+
+<img width="516" height="1200" alt="Screenshot 2022-12-12 at 1 05 40 AM" src="https://user-images.githubusercontent.com/69910183/209126911-93bf9c7d-7085-48c2-a955-35717f90b0e2.png">
 
 Completion time almost equal:
+
 RxSwift
 
 <img width="302" alt="Screenshot 2022-12-12 at 1 34 05 AM" src="https://user-images.githubusercontent.com/69910183/209127652-993b8a0d-ca18-4a5e-a4f0-705eb281f2ed.png">
