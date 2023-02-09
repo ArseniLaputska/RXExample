@@ -16,20 +16,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lij-qV-L1s">
-                                <rect key="frame" x="16" y="47" width="358" height="763"/>
+                                <rect key="frame" x="16" y="113" width="358" height="697"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="VJe-6E-mL7">
+                                <rect key="frame" x="16" y="47" width="358" height="56"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" searchBarStyle="minimal" placeholder="Search Universities" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ml-ez-dNg">
+                                        <rect key="frame" x="0.0" y="0.0" width="218" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8B8-hj-jgg">
+                                        <rect key="frame" x="262" y="0.0" width="96" height="56"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Load">
+                                            <color key="baseBackgroundColor" systemColor="systemIndigoColor"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="lij-qV-L1s" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KOY-bs-Z5d"/>
+                            <constraint firstItem="VJe-6E-mL7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1WY-Gn-fe1"/>
+                            <constraint firstItem="VJe-6E-mL7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="74q-aL-6Q1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VJe-6E-mL7" secondAttribute="trailing" constant="16" id="8X0-Oa-uSR"/>
+                            <constraint firstItem="lij-qV-L1s" firstAttribute="top" secondItem="VJe-6E-mL7" secondAttribute="bottom" constant="10" id="HWg-7B-Ogm"/>
                             <constraint firstItem="lij-qV-L1s" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="u0z-N5-4PF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lij-qV-L1s" secondAttribute="trailing" constant="16" id="u6e-Iw-qYo"/>
                             <constraint firstItem="lij-qV-L1s" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="wUu-ti-O70"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadButton" destination="8B8-hj-jgg" id="vuf-j0-eq1"/>
+                        <outlet property="searchBar" destination="4ml-ez-dNg" id="vQp-IJ-zXo"/>
                         <outlet property="tableView" destination="lij-qV-L1s" id="uaU-tr-OYj"/>
                     </connections>
                 </viewController>
@@ -38,4 +59,9 @@
             <point key="canvasLocation" x="21.538461538461537" y="3.5545023696682461"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
