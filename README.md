@@ -1,56 +1,34 @@
-# Async network request
-Hello! There is a minor project, where I create simple table view with list of universities from various countries.
+Hello, here is a description of this little project based on RxSwift fraemwork. The main idea of changes was to show that with help of Rx we can not only send network request but control state of our items & UI elements too and update it.
 
-The main aim of this project was to implement asynchronous requests with RxSwift.
-Also in process it was very curious to compare it to native-based solution with help of Async/Await.
+Our app look:
 
-The requests works fine and smooth:
+<img width="500" height="1200" alt="Screen" src="https://user-images.githubusercontent.com/69910183/217889308-de029164-e1ae-4c9d-b854-4dfb1b5403e3.png">
 
-<img width="516" height="1200" alt="Screenshot 2022-12-12 at 1 05 40 AM" src="https://user-images.githubusercontent.com/69910183/209126911-93bf9c7d-7085-48c2-a955-35717f90b0e2.png">
+There we can see list of items, search bar and load button. All of this items are binding with help of rx framework. Let's take a more detailed look on this elements.
 
-Completion time almost equal:
+Take a look on our button. We binding our button to observe sequences and accept result in our model. Also here I implemented the acitivity indicator with progressHUD.
+Our activity indicator following all active observable elements and showing us our progress view, in case when there is no active elements progress view is hide. So it is one of the powerful side in reactive programming that we can dynamically update our view.
 
-RxSwift
+![Screenshot 2023-02-09 at 8 34 10 PM](https://user-images.githubusercontent.com/69910183/217892789-364b0dc9-6c1a-45ec-9776-0ffb13964b0d.png)
 
-<img width="302" alt="Screenshot 2022-12-12 at 1 34 05 AM" src="https://user-images.githubusercontent.com/69910183/209127652-993b8a0d-ca18-4a5e-a4f0-705eb281f2ed.png">
+<img width="500" height="1000" alt="Screen" src="https://user-images.githubusercontent.com/69910183/217891069-ffd18351-0ee9-4619-a444-12c5b8c9decb.png">
 
-Async/Await
+Then we can look at our search bar. Firstly what I need to mention here that is our search queary works on populated data (in this case there is no problem to create reactive search with requests, but I choosed another variant). Search bar is also binding with our data, that mean that we cannot use it until we get some data to search, which is another example how convenient we can take this with few lines of code.
 
-<img width="316" alt="Screenshot 2022-12-12 at 1 05 40 AM" src="https://user-images.githubusercontent.com/69910183/209127543-1d570ade-dbf9-47dc-a096-bb5350a5db08.png">
+We looking onto our model state and based on this we can control our search bar. To reach this we create simple "Binding" reactive extension.
 
-# RxSwift
-Let's take a more detailed look on syntax under the hood and compare it with Async/Await. I'm throwing a 5 network calls which returns an array of University, after that we merge results and return a populated value.
+![Screenshot 2023-02-09 at 8 45 09 PM](https://user-images.githubusercontent.com/69910183/217895491-aaffaae9-0529-4d80-b4b3-b62f0c17443b.png)
 
-Firstly we take a look on RxSwift. Starting with function send which is our generic request and return Observable. 
+![Screenshot 2023-02-09 at 8 46 55 PM](https://user-images.githubusercontent.com/69910183/217895760-5133edee-a652-47e8-8a8f-9dc4373e0539.png)
 
-<img width="731" alt="Screenshot 2022-12-22 at 3 01 38 PM" src="https://user-images.githubusercontent.com/69910183/209130256-bac3eb16-b546-4c20-a0ef-3b1e61f277d7.png">
+And how it look in our app:
 
-After that we write a getCounrty method with the name of the country as argument and return Observable array of University.
+<img width="212" alt="Screenshot 2023-02-09 at 8 49 09 PM" src="https://user-images.githubusercontent.com/69910183/217896249-346b3d96-e4c9-4a4a-9065-b201514ff501.png">
+->
+<img width="222" alt="Screenshot 2023-02-09 at 8 49 29 PM" src="https://user-images.githubusercontent.com/69910183/217896313-ed3130b4-0591-4311-bdbc-db25e06539e6.png">
 
-<img width="587" alt="Screenshot 2022-12-22 at 3 01 54 PM" src="https://user-images.githubusercontent.com/69910183/209130293-d316aec2-2be1-4cde-a94f-3ea291a4f4be.png">
+Search works perfectly ;)
 
-And finally we create a func which get list of countries as parameters, inside we returns an array containing the results of mapping the given closure over the sequence’s elements and adopted into a single observable sequence.
+<img width="500" height="1200" alt="Screen" src="https://user-images.githubusercontent.com/69910183/217891013-15c8327b-e056-43bd-be18-d04176f2b16f.png">
 
-<img width="552" alt="Screenshot 2022-12-22 at 3 09 39 PM" src="https://user-images.githubusercontent.com/69910183/209131554-d0fa581a-504e-46c2-9ae0-4fa569d52147.png">
-
-And done! So it's 17 lines code with nice-looking syntax which allow passing a so many async requests as we want.
-
-# Next is Async/Await.
-It is native library which allow us to perfrom various async tasks. Apple introduced this only in 2021 but this feature becomes more popular every day.
-So here we also started with generic method.
-
-<img width="698" alt="Screenshot 2022-12-22 at 3 25 46 PM" src="https://user-images.githubusercontent.com/69910183/209134194-64e15186-4efd-4f95-99d8-7aed17d1687d.png">
-
-Then we write a generic function which return us array of University.
-
-<img width="609" alt="Screenshot 2022-12-22 at 3 27 16 PM" src="https://user-images.githubusercontent.com/69910183/209134419-8c8230c2-852e-40b0-a57b-19a71d3fb5ed.png">
-
-And finally we create a func which get list of countries as parameters, inside creating task where we creating async requests (as much as countries we have), awaiting result, appending value nad return our model.
-
-<img width="707" alt="Screenshot 2022-12-22 at 3 34 27 PM" src="https://user-images.githubusercontent.com/69910183/209135526-900cd66a-ae05-471a-9858-a685f2ffa74f.png">
-
-Also not much code, only 23 lines and also fresh-looking readability.
-
-# Conclusion
-To conclusion I want to say that both methods has right to use, both of them very powerful. It is depends from so many factors where we can use this one or another implementation to network layer at all. We should care about the minimal support version of iOS in case of Async/Await.
-So I think if you createing a new project and started supportiing at least from 15 version you can use Async/Await, because it is neat working native library. Also like RxSwift we can use Async/Await not only for network requests.
+So more detailed you can see inside of project or just download it.
