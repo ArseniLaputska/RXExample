@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		07436F87DC6C345620BDEC71 /* Pods_ReactiveRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4853C0AF84857053DFB26737 /* Pods_ReactiveRTests.framework */; };
+		366C3B692994EE42008A5BC3 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366C3B682994EE42008A5BC3 /* ActivityIndicator.swift */; };
+		366C3B6B29950684008A5BC3 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366C3B6A29950684008A5BC3 /* ProgressHUD.swift */; };
+		366C3B6F29952BB8008A5BC3 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366C3B6E29952BB8008A5BC3 /* SearchBar.swift */; };
 		36B9C024291D787C00DACF31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B9C023291D787C00DACF31 /* AppDelegate.swift */; };
 		36B9C026291D787C00DACF31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B9C025291D787C00DACF31 /* SceneDelegate.swift */; };
 		36B9C028291D787C00DACF31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B9C027291D787C00DACF31 /* ViewController.swift */; };
@@ -49,6 +52,9 @@
 		09A8C72FDAEED67A7555F365 /* Pods-ReactiveR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveR.debug.xcconfig"; path = "Target Support Files/Pods-ReactiveR/Pods-ReactiveR.debug.xcconfig"; sourceTree = "<group>"; };
 		27E95E0EFDC0C2BA6B5465F2 /* Pods-ReactiveR-ReactiveRUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveR-ReactiveRUITests.debug.xcconfig"; path = "Target Support Files/Pods-ReactiveR-ReactiveRUITests/Pods-ReactiveR-ReactiveRUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2EDEA80ED0EC453BD3F8585C /* Pods_ReactiveR_ReactiveRUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactiveR_ReactiveRUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		366C3B682994EE42008A5BC3 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		366C3B6A29950684008A5BC3 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		366C3B6E29952BB8008A5BC3 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		36B9C020291D787C00DACF31 /* ReactiveR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactiveR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B9C023291D787C00DACF31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36B9C025291D787C00DACF31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +124,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		366C3B672994EE16008A5BC3 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				366C3B682994EE42008A5BC3 /* ActivityIndicator.swift */,
+				366C3B6A29950684008A5BC3 /* ProgressHUD.swift */,
+				366C3B6E29952BB8008A5BC3 /* SearchBar.swift */,
+			);
+			path = "UI Elements";
+			sourceTree = "<group>";
+		};
 		36B9C017291D787C00DACF31 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +165,7 @@
 				36B9C061291D7CBF00DACF31 /* Model */,
 				36B9C058291D7C1800DACF31 /* NetworkManager */,
 				36B9C053291D7B3100DACF31 /* Cell */,
+				366C3B672994EE16008A5BC3 /* UI Elements */,
 				36B9C02C291D787E00DACF31 /* Assets.xcassets */,
 				36B9C064291D7D2200DACF31 /* Main.storyboard */,
 				36B9C02E291D787E00DACF31 /* LaunchScreen.storyboard */,
@@ -187,9 +204,9 @@
 			isa = PBXGroup;
 			children = (
 				36B9C059291D7C2C00DACF31 /* NetworkManager.swift */,
+				36B9C05F291D7CA300DACF31 /* NetworkClient.swift */,
 				36B9C05B291D7C6D00DACF31 /* ApiRequest.swift */,
 				36B9C05D291D7C8400DACF31 /* ModelRequest.swift */,
-				36B9C05F291D7CA300DACF31 /* NetworkClient.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -457,7 +474,10 @@
 				36B9C063291D7CD000DACF31 /* University.swift in Sources */,
 				36B9C05C291D7C6D00DACF31 /* ApiRequest.swift in Sources */,
 				36B9C05A291D7C2C00DACF31 /* NetworkManager.swift in Sources */,
+				366C3B6F29952BB8008A5BC3 /* SearchBar.swift in Sources */,
+				366C3B6B29950684008A5BC3 /* ProgressHUD.swift in Sources */,
 				36B9C024291D787C00DACF31 /* AppDelegate.swift in Sources */,
+				366C3B692994EE42008A5BC3 /* ActivityIndicator.swift in Sources */,
 				36B9C026291D787C00DACF31 /* SceneDelegate.swift in Sources */,
 				36B9C05E291D7C8400DACF31 /* ModelRequest.swift in Sources */,
 				36B9C060291D7CA300DACF31 /* NetworkClient.swift in Sources */,
